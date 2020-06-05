@@ -22,6 +22,39 @@ fourth.push(document.getElementById("o-second"));
 fourth.push(document.getElementById("o-third"));
 fourth.push(document.getElementById("o-fourth"));
 
+let fifth = [];
+fifth.push(document.getElementById("y-first"));
+fifth.push(document.getElementById("y-second"));
+fifth.push(document.getElementById("y-third"));
+fifth.push(document.getElementById("y-fourth"));
+
+let sixth = [];
+sixth.push(document.getElementById("g-first"));
+sixth.push(document.getElementById("g-second"));
+sixth.push(document.getElementById("g-third"));
+sixth.push(document.getElementById("g-fourth"));
+
+let seventh = [];
+seventh.push(document.getElementById("bl-first"));
+seventh.push(document.getElementById("bl-second"));
+seventh.push(document.getElementById("bl-third"));
+seventh.push(document.getElementById("bl-fourth"));
+
+let eighth = [];
+eighth.push(document.getElementById("p-first"));
+eighth.push(document.getElementById("p-second"));
+eighth.push(document.getElementById("p-third"));
+eighth.push(document.getElementById("p-fourth"));
+
+let ninth = [];
+ninth.push(document.getElementById("gy-first"));
+ninth.push(document.getElementById("gy-second"));
+ninth.push(document.getElementById("gy-third"));
+
+let tenth = [];
+tenth.push(document.getElementById("w-first"));
+tenth.push(document.getElementById("w-second"));
+tenth.push(document.getElementById("w-third"));
 
 const colorBars = document.getElementsByClassName("color-bar");
 const resetButton = document.getElementById('reset');
@@ -61,7 +94,7 @@ const setColor = (color,inx)=>{
             colorBars.item(inx).style.backgroundColor = color;
             canChange[inx] = 0;
             console.log(canChange)
-            e.target.style.border = '6px solid red'
+            e.target.style.border = '6px solid lightgreen'
             clickedButtons.push(e.target);
         }
 
@@ -69,8 +102,8 @@ const setColor = (color,inx)=>{
 
 }
 
-function animate(list,color){
-    for (let i=0;i<first.length;i++){
+const animate = (list,color)=>{
+    for (let i=0;i<list.length;i++){
         list[i].addEventListener('mouseover',changeColor(color,i));
         list[i].addEventListener('mouseout',restoreColor(i));
         list[i].addEventListener('click',setColor(color,i));
@@ -81,25 +114,14 @@ function animate(list,color){
 animate(first,'black');
 animate(second,'brown');
 animate(third,'red');
-/*
-for (let i=0;i<first.length;i++){
-    first[i].addEventListener('mouseover',changeColor('black',i));
-    first[i].addEventListener('mouseout',restoreColor(i));
-    first[i].addEventListener('click',setColor('black',i));
-}
+animate(fourth,'orange');
+animate(fifth,'yellow');
+animate(sixth,'green');
+animate(seventh,'blue');
+animate(eighth,'purple');
+animate(ninth,'grey');
+animate(tenth,'honeydew')
 
-for (let i=0;i<second.length;i++){
-    second[i].addEventListener('mouseover',changeColor('brown',i));
-    second[i].addEventListener('mouseout',restoreColor(i));
-    second[i].addEventListener('click',setColor('brown',i));
-}
-
-for (let i=0;i<third.length;i++){
-    third[i].addEventListener('mouseover',changeColor('red',i));
-    third[i].addEventListener('mouseout',restoreColor(i));
-    third[i].addEventListener('click',setColor('red',i));
-}
-*/
 resetButton.addEventListener('click',()=>{
     canChange = [1,1,1,1,1,1];
     const len = colorBars.length;
