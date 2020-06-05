@@ -50,13 +50,13 @@ body{
 }
 
 #first{
-    background-color:red;
+    background-color:grey;
     margin: 0 40px;
     margin-left: 40px;
 }
 
 #second{
-    background-color:yellow;
+    background-color:grey;
     margin-right: 10px;
 }
 
@@ -66,21 +66,21 @@ body{
 }
 
 #fourth{
-    background-color: blue;
+    background-color: grey;
     margin: 0 10px;
 }
 
 #fifth{
-    background-color: brown;
+    background-color: grey;
 }
 
 #sixth{
-    background-color: gold;
+    background-color: grey;
     margin: 0 40px;
 }
 
 table{
-    margin: 100px auto;
+    margin: 100px auto 50px auto;
     border-spacing: 20px 0;
     font-weight: bold;
     text-align: center;
@@ -90,14 +90,19 @@ table{
 td{
     width: 60px;
     height: 40px;
-    border: 2px solid black;
+    border: 1px solid black;
     cursor: pointer;
+}
+
+td:hover{
+    border: 6px solid lightskyblue;
 }
 
 .black{
     color: white;
     background-color: black;
 }
+
 
 .brown{
     color: black;
@@ -133,4 +138,18 @@ td{
 
 .white{
     background-color: honeydew;
+}
+
+.button{
+    margin: 0 auto;
+    border: 2px solid black;
+    width: 150px;
+    border-radius: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.button:hover{
+    transition: .5s;
+    background-color: white;
 }
