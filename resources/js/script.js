@@ -58,17 +58,22 @@ tenth.push(document.getElementById("w-third"));
 
 const colorBars = document.getElementsByClassName("color-bar");
 const resetButton = document.getElementById('reset');
+const display = document.getElementsByClassName("display").item(0);
+
 let clickedButtons = [];
 
 let index = 3;
 
 let canChange = [1,1,1,1,1,1];
 
+let resValue = 0;
+
 const changeColor = (color,inx)=>{
 
     return function(){
         if (canChange[inx]){
             colorBars.item(inx).style.backgroundColor = color;
+            calValue();
         }
     }
 
@@ -79,7 +84,7 @@ const restoreColor = (inx)=>{
 
     return ()=>{
         if (canChange[inx]){
-            colorBars.item(inx).style.backgroundColor = 'grey';
+            colorBars.item(inx).style.backgroundColor = 'black';
         }
     }
 
@@ -96,8 +101,10 @@ const setColor = (color,inx)=>{
             console.log(canChange)
             e.target.style.border = '6px solid lightgreen'
             clickedButtons.push(e.target);
+            calValue();
         }
 
+        
     }
 
 }
@@ -109,6 +116,60 @@ const animate = (list,color)=>{
         list[i].addEventListener('click',setColor(color,i));
     }
 
+}
+
+const getVal = (bars)=>{
+
+    switch(bars.style.backgroundColor){
+        case ('black'):
+            dig = 0;
+            break;
+        case ('brown'):
+            dig = 1;
+            break;
+        case ('red'):
+            dig = 2;
+            break;
+        case ('orange'):
+            dig = 3;
+            break;
+        case ('yellow'):
+            dig = 4;
+            break;
+        case ('green'):
+            dig = 5;
+            break;
+        case ('blue'):
+            dig = 6;
+            break;
+        case ('purple'):
+            dig = 7;
+            break;
+        case ('grey'):
+            dig = 8;
+            break;
+        case ('honeydew'):
+            dig = 9;
+            break;
+    }
+
+    return dig;
+}
+
+const calValue = ()=>{
+    let multiplier = 0;
+    let dig3 = 0;
+    let dig2 = 0;
+    let dig1 = 0;
+
+    dig1 = getVal(colorBars[0]);
+    dig2 = getVal(colorBars[1]);
+    dig3 = getVal(colorBars[2]);
+    multiplier = Math.pow(10,getVal(colorBars[3]));
+
+    resValue = dig1*100 + dig2*10 +dig3;
+    display.innerHTML = `${resValue*multiplier}<span>OHMs</span>`;
+    console.log(resValue);
 }
 
 animate(first,'black');
@@ -124,11 +185,17 @@ animate(tenth,'honeydew')
 
 resetButton.addEventListener('click',()=>{
     canChange = [1,1,1,1,1,1];
-    const len = colorBars.length;
+    const len = colorBars.length - 2; // I don't touch the last two bars for now
 
     for(let i=0;i<len;i++){
-        colorBars.item(i).style.backgroundColor = 'grey';
+        colorBars.item(i).style.backgroundColor = 'black';
     }
 
+    //colorBars.item(3).style.backgroundColor = 'black';
+
     clickedButtons.forEach((element)=>{element.style.border=""});
+    display.innerHTML = 0 + '<span>OHMs</span>';
+
 })
+
+calValue();
