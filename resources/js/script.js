@@ -1,35 +1,45 @@
-const first = document.getElementsByClassName("black");
+let first = []
+first.push(document.getElementById("b-first"));
+first.push(document.getElementById("b-second"));
+first.push(document.getElementById("b-third"));
+first.push(document.getElementById("b-fourth"));
+
+
 const colorBars = document.getElementsByClassName("color-bar");
 const resetButton = document.getElementById('reset');
 let clickedButtons = [];
 
-let index = 0;
+let index = 3;
 
 let canChange = [1,1,1,1,1,1];
 
-const changeColor = (color)=>{
+const changeColor = (color,inx)=>{
 
     return function(){
-        if (canChange[index]){
-            colorBars.item(index).style.backgroundColor = color;
+        if (canChange[inx]){
+            colorBars.item(inx).style.backgroundColor = color;
         }
     }
 
     
 }
 
-const restoreColor = ()=>{
+const restoreColor = (inx)=>{
 
-    if (canChange[index]){
-        colorBars.item(index).style.backgroundColor = 'grey';
+    return ()=>{
+        if (canChange[inx]){
+            colorBars.item(inx).style.backgroundColor = 'grey';
+        }
     }
+
+
 }
 
-const setColor = (color)=>{
+const setColor = (color,inx)=>{
 
     return function (e){
-        colorBars.item(index).style.backgroundColor = color;
-        canChange[index] = 0;
+        colorBars.item(inx).style.backgroundColor = color;
+        canChange[inx] = 0;
         e.target.style.border = '6px solid red'
         clickedButtons.push(e.target);
     }
@@ -39,9 +49,9 @@ const setColor = (color)=>{
 
 
 for (let i=0;i<first.length;i++){
-    first.item(i).addEventListener('mouseover',changeColor('black'));
-    first.item(i).addEventListener('mouseout',restoreColor);
-    first.item(i).addEventListener('click',setColor('black'));
+    first[i].addEventListener('mouseover',changeColor('black',i));
+    first[i].addEventListener('mouseout',restoreColor(i));
+    first[i].addEventListener('click',setColor('black',i));
 }
 
 resetButton.addEventListener('click',()=>{
