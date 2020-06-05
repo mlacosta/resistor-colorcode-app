@@ -85,6 +85,7 @@ const restoreColor = (inx)=>{
     return ()=>{
         if (canChange[inx]){
             colorBars.item(inx).style.backgroundColor = 'black';
+            calValue();
         }
     }
 
@@ -119,6 +120,8 @@ const animate = (list,color)=>{
 }
 
 const getVal = (bars)=>{
+
+    let dig = 0;
 
     switch(bars.style.backgroundColor){
         case ('black'):
@@ -169,8 +172,9 @@ const calValue = ()=>{
 
     resValue = dig1*100 + dig2*10 +dig3;
     display.innerHTML = `${resValue*multiplier}<span>OHMs</span>`;
-    console.log(resValue);
 }
+
+
 
 animate(first,'black');
 animate(second,'brown');
@@ -198,4 +202,3 @@ resetButton.addEventListener('click',()=>{
 
 })
 
-calValue();
